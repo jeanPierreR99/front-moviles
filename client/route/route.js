@@ -46,10 +46,10 @@ const content_estadistica = ()=>{
   <center><h1>Lista ISI</h1></center>
   <div class="container">
   <div class="my-4 md:flex flex-row">
-      <div class="md:w-6/12 w-full">
+      <div class="md:w-6/12 w-full overflow-x-auto">
           <div id="chart3" class="chart w-full min-h-[400px]"></div>
       </div>
-      <div class="md:w-6/12 w-full">
+      <div class="md:w-6/12 w-full overflow-x-auto">
           <div id="chart4" class="chart w-full min-h-[400px]"></div>
       </div>
   </div>
