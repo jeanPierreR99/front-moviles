@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="./public/table.css">
+<link rel="stylesheet" href="./public/index.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.4.min.js"
+  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+  crossorigin="anonymous"
+></script>
+<!-- modal -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"
+  rel="stylesheet"
+/>
+<!-- end modal -->
+
+<!-- datatables -->
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css"
+/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+  type="text/javascript"
+  charset="utf8"
+  src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- end datatables -->
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <style>
+      body{
+        background: rgb(240, 242, 244);
+      }
+    </style>
+<body>
+
+    <!-- header-body -->
+    <div
+      class="h-16 lg:flex w-full border-b border-gray-200 dark:border-gray-800 px-10 sticky top-0 z-50 bg-[var(--header-color)] relative"
+    >
+      <div class="ml-auto flex items-center py-4 float-right group relative">
+        <button class="flex items-center text-white">
+          <span class="relative flex-shrink-0">
+            <img
+              class="w-7 h-7 rounded-full"
+              src="https://static.vecteezy.com/system/resources/previews/002/002/427/original/man-avatar-character-isolated-icon-free-vector.jpg"
+              alt="profile"
+            />
+            <span
+              class="absolute right-0 -mb-0.5 bottom-0 w-2 h-2 rounded-full bg-rose-500 border border-white dark:border-gray-900"
+            ></span>
+          </span>
+          <span class="ml-2" id="profile_name">Nombre del usario </span>
+          <svg
+            viewBox="0 0 24 24"
+            class="w-4 ml-1 flex-shrink-0"
+            stroke="currentColor"
+            stroke-width="2" q   q 
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="text-sm w-[150px] left-0 text-gray-500 absolute top-[3rem] hidden group-hover:block bg-white shadow-md rounded-md ">
+          <button class="px-2 w-full text-left p-1 hover:bg-gray-100 hover:text-gray-700">Perfil</button>
+          <button class="px-2 w-full text-left p-1 hover:bg-gray-100 hover:text-gray-700" id="exit">Salir</button>
+        </div>
+      </div>
+      <div
+        id="content-card"
+        class="absolute top-[4rem] right-5 p-2 flex flex-col gap-2"
+      >
+        
+    </div>
+    </div>
+    <!-- end header-body -->
+
+<div class="bg-white shadow-md h-16 flex pl-10 gap-7 items-center">
+  
+
+  <div class="relative group inline-block text-left">
+    <div>
+      <button type="button" class="hover:text-gray-700 text-gray-500 flex items-center text-sm menu" aria-expanded="true" aria-haspopup="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z" />
+        </svg>
+        
+        Accesos
+        <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
+    <div class="absolute group-hover:block hidden z-10 w-40 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+      <div role="none">
+        <a href="#list/ISI" class="hover:bg-gray-100 text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">
+       Lista ISI</a>
+       <a href="#list/ENF" class="hover:bg-gray-100 text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">
+        Lista EDUCACIÓN</a>
+        <a href="#list/AGRO" class="hover:bg-gray-100 text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">
+          Lista ENFERMERIA</a>
+      </div>
+    </div>
+  </div>
+
+  <div class=" inline-block text-left">
+    <div>
+      <a href="#estadistica" class="hover:text-gray-700 text-gray-500 flex items-center text-sm menu" aria-expanded="true" aria-haspopup="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+        </svg>
+        
+        Estadística
+      </a>
+    </div>
+  </div>
+  </div>
+
+  <div class="pt-5 bg-white my-4 mx-10 h-auto pb-[50px] shadow-md rounded-md" id="body-content">
+    RENDERIZADO
+  </div>
+   <!-- Apache ECharts -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.0/echarts.min.js"></script>
+   <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    <!-- ruta -->
+    <script src="./route/route.js"></script>
+    <!-- eee -->
+    <script src="../controller/global.js"></script>
+    <script src="./controller/controller.list.js"></script>
+    <script src="./controller/controller.estadistica.js"></script>
+    <script src="../controller/controller.session.storage.js"></script>
+    <script>
+      $("#exit").on("click", () => {
+
+      localStorage.clear();
+      window.location = "/";
+});
+
+var get_storage_users = localStorage.getItem("current_user");
+var current_users = JSON.parse(get_storage_users);
+ 
+$("#profile_name").html(`${current_users.name_user}`)
+    </script>
+    <!-- <script src="./controller/controller.kits.js"></script> -->
+  </body>
+</html>

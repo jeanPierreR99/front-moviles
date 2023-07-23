@@ -1,0 +1,10 @@
+table.dataTable thead th, table.dataTable thead td{
+    border-bottom: none !important;
+}
+table.dataTable.no-footer{
+    border-bottom: none !important;
+}
+.dataTables_wrapper .dataTables_filter input{
+    border: 1px solid #d2d6db !important;
+    border-radius: 5px !important;
+}
