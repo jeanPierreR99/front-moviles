@@ -22,7 +22,8 @@ $(document).ready(function () {
 function listIsi() {
   window.location.hash = "#list/ISI";
   $("#body-content").html(content_list);
-  get_list_user()
+  get_list()
+  get_list_users()
 }
 function listENF() {
   $("#body-content").html("LISTA DE ENFERMERIA");
@@ -37,14 +38,14 @@ function listAGRO() {
 //-----------------------------------------------
 const content_list = () => {
   return `  <div
-    id="addModalDepartaments"
+    id="addModalList"
     tabindex="-1"
     aria-hidden="true"
     style="background: rgba(0, 0, 0, 0.082)"
-    class="hidden fixed top-0 left-0 backdrop-blur-sm right-0 z-50 items-center justify-center w-full p-4 overflow-y-auto md:inset-0 max-h-full h-[calc(100vh-4rem)] flex mt-[4rem]"
+    class="hidden fixed top-0 left-0 backdrop-blur-sm right-0 z-50 items-center justify-center w-full p-4 overflow-y-auto md:inset-0 max-h-full flex "
   >
     <div
-      class="relative w-full h-auto max-w-2xl max-h-full my-2"
+      class="relative w-full h-auto max-w-2xl max-h-full my-2 m-auto"
       style="z-index: 99999"
     >
       <!-- Modal content -->
@@ -62,7 +63,7 @@ const content_list = () => {
           <button
             type="button"
             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-            data-modal-hide="addModalDepartaments"
+            onclick="hideModalAddList()"
           >
             <svg
               aria-hidden="true"
@@ -175,9 +176,8 @@ const content_list = () => {
       <span class="text-lg font-medium text-gray-700">Lista de candidatos</span>
       <button
       class="bg-[var(--new-button)] py-2 px-4 text-white rounded-md hover:bg-[var(--hover-new-button)]"
-        data-modal-target="addModalDepartaments"
-        data-modal-toggle="addModalDepartaments"
         type="button"
+        onclick="showModalAddList()"
       >
         +&nbsp;Nuevo
       </button>
@@ -219,13 +219,49 @@ const content_list = () => {
           
         </tbody>
       </table>
-  </div>`
+  </div>
+  <div class="mt-7">
+  <span class="text-lg font-medium text-gray-700 mt-50">Votos Registrados</span>
+  <div class="w-full mt-7"></div>
+      <!-- table -->
+      <table id="table-users" class="w-full text-left overflow-x-auto">
+        <thead class="bg-gray-100">
+          <tr class="text-gray-500 text-sm">
+            <th
+              class="px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800"
+            >
+              Fecha de registro
+            </th>
+            <th
+            class="px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800"
+          >
+            Código
+          </th>
+            <th
+              class="px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800"
+            >
+              Nombres
+            </th>
+            <th
+              class="px-3 pt-0 pb-3 border-b border-gray-200 dark:border-gray-800"
+            >
+              Correo
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="table-users-render" class="text-gray-500 text-sm">
+          
+        </tbody>
+      </table>
+  </div>
+  `
 }
 
 const content_estadistica = ()=>{
 
   return ` 
-  <center><h1>Lista ISI</h1></center>
+  <center class="text-lg font-medium text-gray-700 mt-50"><h1>Lista ISI</h1></center>
   <div class="container">
   <div class="my-4 md:flex flex-row">
       <div class="md:w-6/12 w-full">

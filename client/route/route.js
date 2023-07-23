@@ -43,7 +43,7 @@ const content_list = () => {
 const content_estadistica = ()=>{
 
   return ` 
-  <center><h1>Lista ISI</h1></center>
+  <center class="text-lg font-medium text-gray-700 mt-50"><h1>Lista ISI</h1></center>
   <div class="container">
   <div class="my-4 md:flex flex-row">
       <div class="md:w-6/12 w-full overflow-x-auto">

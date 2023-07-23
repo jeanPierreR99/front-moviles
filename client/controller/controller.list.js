@@ -80,6 +80,7 @@ async function emitVoto(id) {
             id: "0",
             code: current_users.id,
             name: current_users.name_user,
+            email: current_users.mail,
             date: date(),
         };
         db.collection("Votos")
@@ -96,7 +97,7 @@ async function emitVoto(id) {
                         showConfirmButton: false,
                         timer: 1500,
                     }).then(async function () {
-
+                        $(".emit-voto").addClass("hidden")
                         const url = "https://email-nodejs.vercel.app/confirmation";
                         const data = {
                             email: current_users.mail,

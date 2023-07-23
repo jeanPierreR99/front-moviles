@@ -12,6 +12,8 @@ const storage = firebase.storage();
 
 const ref_user = db.collection("User");
 
+const ref_voto = db.collection("Votos");
+
 var get_storage_user = localStorage.getItem("current_user");
 
 
