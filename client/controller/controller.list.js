@@ -1,7 +1,7 @@
 
 
 function get_list_user() {
-    ref_user.onSnapshot(function (snapshop) {
+    ref_user.get().then(function (snapshop) {
 
         user_list = snapshop.docs.map((doc) => ({
             id: doc.id,
@@ -67,6 +67,7 @@ function validateVoto() {
         });
 }
 async function emitVoto(id) {
+    await $(".emit-voto").addClass("hidden")
     var get_storage_users = localStorage.getItem("current_user");
     var current_users = JSON.parse(get_storage_users);
 
@@ -97,12 +98,11 @@ async function emitVoto(id) {
                         showConfirmButton: false,
                         timer: 1500,
                     }).then(async function () {
-                        $(".emit-voto").addClass("hidden")
                         const url = "https://email-nodejs.vercel.app/confirmation";
                         const data = {
                             email: current_users.mail,
                         };
-    
+
                         const options = {
                             method: "POST",
                             headers: {
@@ -110,7 +110,7 @@ async function emitVoto(id) {
                             },
                             body: JSON.stringify(data),
                         };
-    
+
                         await fetch(url, options)
                             .then((response) => response.json())
                             .then((data) => {
@@ -119,7 +119,7 @@ async function emitVoto(id) {
                             .catch((error) => {
                                 console.error("Error:", error);
                             });
-                            
+
                         localStorage.clear()
                         window.location = '/'
                     })
