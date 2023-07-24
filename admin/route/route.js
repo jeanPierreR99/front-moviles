@@ -182,9 +182,9 @@ const content_list = () => {
         +&nbsp;Nuevo
       </button>
     </div>
-    <div class="w-full">
+    <div class="w-full overflow-x-auto">
       <!-- table -->
-      <table id="table-list" class="w-full text-left overflow-x-auto">
+      <table id="table-list" class="w-full text-left">
         <thead class="bg-gray-100">
           <tr class="text-gray-500 text-sm">
             <th
@@ -222,9 +222,9 @@ const content_list = () => {
   </div>
   <div class="mt-7">
   <span class="text-lg font-medium text-gray-700 mt-50">Votos Registrados</span>
-  <div class="w-full mt-7"></div>
+  <div class="w-full mt-7 overflow-x-auto">
       <!-- table -->
-      <table id="table-users" class="w-full text-left overflow-x-auto">
+      <table id="table-users" class="w-full text-left">
         <thead class="bg-gray-100">
           <tr class="text-gray-500 text-sm">
             <th

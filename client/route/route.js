@@ -36,7 +36,7 @@ const content_list = () => {
     <div class="flex justify-between mb-4">
       <span class="text-lg font-medium text-gray-700">Lista de candidatos</span>
     </div>
-    <div class="w-full flex sm:flex-row flex-col justify-around" id="render-list">
+    <div class="w-full flex sm:flex-row flex-col flex-wrap justify-around" id="render-list">
   </div>`
 }
 

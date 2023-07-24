@@ -90,14 +90,14 @@ function get_list() {
             user_list.map(data => {
 
                 return `<tr class="hover:bg-gray-100">
-        <td class="border-b w-[250px]">${data.date}</td>
-        <td class="border-b w-[250px]">${data.user_candidato}</td>
-        <td class="border-b flex gap-4 justify-center"><img class="w-[70px] h-[70px]" src="${data.user_url_list}" alt=""><img class="w-[70px] h-[70px]" src="${data.user_url_photo}" alt=""></td>
-        <td class="border-b"><a href="${data.user_url_file}" target="__blank"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+        <td class="border-b text-center">${data.date}</td>
+        <td class="border-b text-center">${data.user_candidato}</td>
+        <td class="border-b text-center flex gap-4 justify-center h-full"><img class="w-[50px] h-[50px]" src="${data.user_url_list}" alt=""><img class="w-[50px] h-[50px]" src="${data.user_url_photo}" alt=""></td>
+        <td class="border-b"><a class=" flex justify-center " href="${data.user_url_file}" target="__blank"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
       </svg>
       </a></td>
-      <td class="border-b w-[100px]">${data.user_point}</td>
+      <td class="border-b text-center text-black text-xl">${data.user_point}</td>
         <td class="border-b"><div class="relative group inline-block text-left">
         <div>
           <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
@@ -141,7 +141,6 @@ function get_list_users() {
             id: doc.id,
             ...doc.data(),
         }));
-console.log(voto)
         $("#table-users-render").html(
             voto.map(data => {
 

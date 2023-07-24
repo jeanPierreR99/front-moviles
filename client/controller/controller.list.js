@@ -14,7 +14,7 @@ function get_list_user() {
                 return `<div class="card mt-5">
                 <!--Card 1-->
                 <div class="sm:w-[350px] w-full rounded overflow-hidden shadow-2xl bg-gray-100bg-white ">
-                  <div class="flex gap-2 h-[150px]">
+                  <div class="flex gap-2 h-[150px] p-3">
                     <img class="w-6/12 h-full" src="${data.user_url_list}" alt="Mountain">
                     <img class="w-6/12 h-full" src="${data.user_url_photo}" alt="Mountain">
                   </div>
