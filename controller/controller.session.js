@@ -30,7 +30,7 @@ user.addEventListener("input", async (e) => {
   var val = e.target.value;
 
   if (val.length == 8) {
-    data = await fetch(`https://api-unamad.vercel.app/api_j_p/${val}`)
+    data = await fetch(`https://apis-unamads.vercel.app/apis_js_ps/${val}`)
       .then(response => response.json())
       .then(data => {
         return data
